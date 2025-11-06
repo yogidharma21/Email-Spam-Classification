@@ -4,19 +4,12 @@ import string
 from nltk.corpus import stopwords
 import nltk
 from nltk.stem.porter import PorterStemmer
-from streamlit_lottie import st_lottie
-import json
 import time
 
 # --- Download nltk ---
 nltk.download('punkt_tab')
 nltk.download('stopwords')
 ps = PorterStemmer()
-
-# --- Lottie Animation Loader ---
-def load_lottie(path: str):
-    with open(path, "r") as f:
-        return json.load(f)
 
 # --- Transform text function ---
 def transform_text(Message):
@@ -105,12 +98,3 @@ with col1:
             st.markdown("<div class='result-box' style='background:#ffe0e0; color:#b00000;'>🚨 SPAM DETECTED!</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div class='result-box' style='background:#e0ffe7; color:#008a2e;'>✅ SAFE - Not Spam</div>", unsafe_allow_html=True)
-
-with col2:
-    try:
-        animation = load_lottie("mail.json")  # tambahkan file animasi lottie sendiri
-        st_lottie(animation, height=250)
-    except:
-        st.info("You can add animation by placing mail.json next to app.py")
-
-st.markdown("<p style='text-align:center; margin-top:50px;'>Made with ❤️ using Streamlit</p>", unsafe_allow_html=True)
